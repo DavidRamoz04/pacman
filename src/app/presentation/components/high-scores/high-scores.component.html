@@ -1,6 +1,13 @@
 <div class="high-scores-container">
   <div class="high-scores-header">
     <h2>PUNTUACIONES ALTAS</h2>
+    <!-- <div class="status-indicator">
+      <span *ngIf="isConnectedToApi" class="api-status connected">🟢 Conectado a BD</span>
+      <span *ngIf="!isConnectedToApi" class="api-status disconnected">🔴 Sin conexión BD</span>
+      <button *ngIf="!isLoading" class="refresh-button" (click)="refreshScores()" title="Actualizar puntajes">
+        🔄
+      </button>
+    </div> -->
     <div class="ghost-decoration">
       <div class="ghost ghost-blinky"></div>
       <div class="ghost ghost-pinky"></div>
@@ -18,8 +25,21 @@
     </div>
     
     <div class="scores-list">
-      <table>
-<tr *ngFor="let score of highScores; trackBy: trackByScore" class="score-row {{ score.rank === 1 ? 'top-score' : '' }} {{ score.rank === 2 ? 'recent-score' : '' }}">
+      <!-- Loading indicator -->
+      <div *ngIf="isLoading" class="loading-indicator">
+        <div class="spinner"></div>
+        <p>Cargando puntuaciones...</p>
+      </div>
+
+      <!-- Error message -->
+      <div *ngIf="errorMessage && !isLoading" class="error-message">
+        <p>{{ errorMessage }}</p>
+      </div>
+
+      <!-- Scores table -->
+      <table *ngIf="!isLoading">
+        <tr *ngFor="let score of highScores; trackBy: trackByScore" 
+            class="score-row {{ score.rank === 1 ? 'top-score' : '' }} {{ isRecentScore(score) ? 'recent-score' : '' }}">
           <td class="rank">{{ score.rank }}</td>
           <td class="player">{{ score.playerName || 'Player 1' }}</td>
           <td class="score">{{ score.score | number }}</td>
@@ -27,7 +47,7 @@
         </tr>
       </table>
       
-      <div *ngIf="highScores.length === 0" class="no-scores">
+      <div *ngIf="highScores.length === 0 && !isLoading" class="no-scores">
         <p>¡No hay puntuaciones aún!</p>
         <p>¡Juega tu primera partida para establecer un récord!</p>
       </div>

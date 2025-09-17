@@ -119,7 +119,26 @@ export class GameComponent implements OnInit, OnDestroy {
     this.score = finalScore; // Update the score from Phaser
     if (this.highScoreService.isHighScore(this.score)) {
       this.showNewHighScore = true;
-      this.highScoreService.addScore(this.score, this.playerName);
+      
+      // Guardar SOLO en backend (sin localStorage)
+      console.log(`🎮 Guardando high score SOLO en backend:`, { score: this.score, player: this.playerName, level: this.level });
+      
+      this.highScoreService.addScore(this.score, this.playerName, this.level).subscribe({
+        next: (isNewHighScore) => {
+          if (isNewHighScore) {
+            console.log(`🏆 ¡Nuevo high score guardado en backend! ${this.score} puntos por ${this.playerName} (Nivel ${this.level})`);
+          } else {
+            console.log(`📊 Score guardado en backend: ${this.score} puntos por ${this.playerName}`);
+          }
+        },
+        error: (error) => {
+          console.error('❌ ERROR CRÍTICO: No se pudo guardar el score en el backend:', error);
+          console.error('🚫 El score se perdió - localStorage deshabilitado');
+          
+          // Mostrar mensaje de error al usuario
+          alert(`Error: No se pudo guardar tu score en la base de datos.\nAsegúrate de que el servidor esté funcionando.\n\nScore: ${this.score} puntos`);
+        }
+      });
     }
   }
 
