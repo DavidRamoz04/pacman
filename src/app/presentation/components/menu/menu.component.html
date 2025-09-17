@@ -1,0 +1,19 @@
+<div class="menu-container">
+  <div class="menu-title">
+    <h1>PAC-MAN</h1>
+    <div class="pacman-logo">
+      <div class="pacman-mouth"></div>
+    </div>
+  </div>
+  
+  <div class="menu-options">
+    <button 
+      *ngFor="let option of menuOptions; let i = index"
+      class="menu-button"
+      [class.selected]="selectedIndex === i"
+      (click)="selectOption(i)"
+      (mouseenter)="selectedIndex = i">
+      {{ option.label }}
+    </button>
+  </div>
+</div>

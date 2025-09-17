@@ -1,0 +1,448 @@
+.player-name-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Courier New', monospace;
+  padding: 20px;
+}
+
+.player-name-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.player-name-header h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: var(--shadow-glow-yellow);
+  margin: 0 0 20px 0;
+  letter-spacing: 4px;
+}
+
+.pacman-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.animated-pacman {
+  width: 40px;
+  height: 40px;
+  background: var(--pacman-yellow);
+  border-radius: 50%;
+  position: relative;
+  animation: chomp 0.8s infinite;
+}
+
+.animated-pacman::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid var(--pacman-black);
+  transform-origin: 0 50%;
+  animation: mouth 0.8s infinite;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--pacman-yellow);
+  border-radius: 50%;
+  animation: fadeOut 2s infinite;
+}
+
+.dot:nth-child(2) { animation-delay: 0.3s; }
+.dot:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes chomp {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes mouth {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.2); }
+}
+
+@keyframes fadeOut {
+  0%, 70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.name-input-section {
+  text-align: center;
+  margin-bottom: 30px;
+  background: var(--overlay-dark);
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid var(--overlay-yellow);
+  width: 100%;
+  max-width: 400px;
+}
+
+.name-input-section h3 {
+  font-size: 1.5rem;
+  margin: 0 0 10px 0;
+  text-shadow: var(--shadow-glow-yellow);
+}
+
+.instruction {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0 0 20px 0;
+  color: var(--text-secondary);
+}
+
+.input-container {
+  margin: 20px 0;
+}
+
+.name-input {
+  width: 100%;
+  max-width: 280px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: 'Courier New', monospace;
+  background: var(--overlay-light);
+  border: 2px solid var(--pacman-yellow);
+  border-radius: 8px;
+  color: var(--pacman-yellow);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.name-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.name-input::placeholder {
+  color: rgba(255, 255, 0, 0.6);
+}
+
+.buttons-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.start-button,
+.back-button {
+  background: transparent;
+  border: 2px solid var(--btn-primary);
+  color: var(--btn-primary);
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 12px 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  max-width: 250px;
+  position: relative;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+.start-button {
+  border-color: var(--btn-success);
+  color: var(--btn-success);
+}
+
+.start-button:hover {
+  background: var(--btn-success);
+  color: var(--pacman-black);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--btn-success);
+}
+
+.back-button:hover {
+  background: var(--btn-primary);
+  color: var(--pacman-black);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--btn-primary);
+}
+
+.start-button::before,
+.back-button::before {
+  content: '';
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.start-button:hover::before,
+.back-button:hover::before {
+  left: 100%;
+}
+
+/* Mobile First Responsive Design */
+
+/* Extra Small devices (phones, up to 575px) */
+@media (max-width: 575px) {
+  .player-name-container {
+    padding: 10px;
+  }
+  
+  .player-name-header {
+    margin-bottom: 25px;
+  }
+  
+  .player-name-header h2 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+  
+  .animated-pacman {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .animated-pacman::before {
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid var(--pacman-black);
+  }
+  
+  .dot {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .name-input-section {
+    padding: 15px;
+    margin-bottom: 25px;
+    max-width: 95%;
+  }
+  
+  .name-input-section h3 {
+    font-size: 1.2rem;
+  }
+  
+  .instruction {
+    font-size: 0.8rem;
+  }
+  
+  .name-input {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+  
+  .buttons-section {
+    gap: 15px;
+  }
+  
+  .start-button,
+  .back-button {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    border-width: 2px;
+    letter-spacing: 0.5px;
+    max-width: 200px;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .player-name-header h2 {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+  }
+  
+  .animated-pacman {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .animated-pacman::before {
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-right: 17px solid var(--pacman-black);
+  }
+  
+  .name-input-section {
+    padding: 18px;
+    max-width: 90%;
+  }
+  
+  .name-input {
+    font-size: 1rem;
+    max-width: 260px;
+  }
+  
+  .start-button,
+  .back-button {
+    font-size: 1rem;
+    padding: 12px 25px;
+    max-width: 230px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .player-name-container {
+    padding: 20px;
+  }
+  
+  .player-name-header {
+    margin-bottom: 40px;
+  }
+  
+  .player-name-header h2 {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+  }
+  
+  .animated-pacman {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .animated-pacman::before {
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 20px solid var(--pacman-black);
+  }
+  
+  .name-input-section {
+    padding: 25px;
+    margin-bottom: 35px;
+    border-width: 2px;
+  }
+  
+  .name-input-section h3 {
+    font-size: 1.5rem;
+  }
+  
+  .name-input {
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    max-width: 300px;
+  }
+  
+  .start-button,
+  .back-button {
+    font-size: 1.1rem;
+    padding: 14px 28px;
+    border-width: 3px;
+    letter-spacing: 1.5px;
+    max-width: 260px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .player-name-header h2 {
+    font-size: 2.8rem;
+    letter-spacing: 5px;
+  }
+  
+  .name-input-section {
+    padding: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .start-button,
+  .back-button {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    letter-spacing: 2px;
+    max-width: 280px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .player-name-header h2 {
+    font-size: 3rem;
+    letter-spacing: 6px;
+  }
+  
+  .name-input-section {
+    max-width: 400px;
+  }
+  
+  .start-button,
+  .back-button {
+    max-width: 300px;
+  }
+}
+
+/* Touch-friendly hover effects */
+@media (hover: hover) {
+  .start-button:hover {
+    background: var(--btn-success);
+    color: var(--pacman-black);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--btn-success);
+  }
+  
+  .back-button:hover {
+    background: var(--btn-primary);
+    color: var(--pacman-black);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--btn-primary);
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 600px) {
+  .player-name-container {
+    padding: 8px;
+    justify-content: flex-start;
+  }
+  
+  .player-name-header {
+    margin-bottom: 15px;
+  }
+  
+  .player-name-header h2 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+  
+  .pacman-animation {
+    margin-top: 10px;
+  }
+  
+  .name-input-section {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .buttons-section {
+    gap: 15px;
+  }
+  
+  .start-button,
+  .back-button {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+}

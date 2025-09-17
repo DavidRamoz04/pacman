@@ -1,0 +1,31 @@
+<div [ngSwitch]="currentState">
+  <app-menu 
+    *ngSwitchCase="'menu'"
+    (newGame)="onNewGame()"
+    (showHighScores)="onShowHighScores()"
+    (showInstructions)="onShowInstructions()">
+  </app-menu>
+  
+  <app-player-name
+    *ngSwitchCase="'player-name'"
+    (playerNameSet)="onPlayerNameSet($event)"
+    (backToMenu)="onBackToMenu()">
+  </app-player-name>
+  
+  <app-game 
+    *ngSwitchCase="'game'"
+    [playerName]="playerName"
+    (gameOver)="onGameOver()"
+    (backToMenu)="onBackToMenu()">
+  </app-game>
+  
+  <app-high-scores 
+    *ngSwitchCase="'high-scores'"
+    (backToMenu)="onBackToMenu()">
+  </app-high-scores>
+  
+  <app-instructions 
+    *ngSwitchCase="'instructions'"
+    (backToMenu)="onBackToMenu()">
+  </app-instructions>
+</div>

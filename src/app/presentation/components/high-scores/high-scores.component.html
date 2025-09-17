@@ -1,0 +1,45 @@
+<div class="high-scores-container">
+  <div class="high-scores-header">
+    <h2>PUNTUACIONES ALTAS</h2>
+    <div class="ghost-decoration">
+      <div class="ghost ghost-blinky"></div>
+      <div class="ghost ghost-pinky"></div>
+      <div class="ghost ghost-inky"></div>
+      <div class="ghost ghost-clyde"></div>
+    </div>
+  </div>
+
+  <div class="scores-table">
+    <div class="table-header">
+      <span class="rank-col">RANGO</span>
+      <span class="player-col">JUGADOR</span>
+      <span class="score-col">PUNTUACIÓN</span>
+      <span class="date-col">FECHA</span>
+    </div>
+    
+    <div class="scores-list">
+      <table>
+<tr *ngFor="let score of highScores; trackBy: trackByScore" class="score-row {{ score.rank === 1 ? 'top-score' : '' }} {{ score.rank === 2 ? 'recent-score' : '' }}">
+          <td class="rank">{{ score.rank }}</td>
+          <td class="player">{{ score.playerName || 'Player 1' }}</td>
+          <td class="score">{{ score.score | number }}</td>
+          <td class="date">{{ score.date }}</td>
+        </tr>
+      </table>
+      
+      <div *ngIf="highScores.length === 0" class="no-scores">
+        <p>¡No hay puntuaciones aún!</p>
+        <p>¡Juega tu primera partida para establecer un récord!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="high-scores-footer">
+    <button class="back-button" (click)="goBack()">
+      ← VOLVER AL MENÚ
+    </button>
+    <button class="clear-button" (click)="clearScores()" *ngIf="highScores.length > 0">
+      LIMPIAR PUNTUACIONES
+    </button>
+  </div>
+</div>

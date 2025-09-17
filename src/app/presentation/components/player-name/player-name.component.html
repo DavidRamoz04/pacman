@@ -1,0 +1,37 @@
+<div class="player-name-container">
+  <div class="player-name-header">
+    <h2>NUEVO JUEGO</h2>
+    <div class="pacman-animation">
+      <div class="animated-pacman"></div>
+      <div class="dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="name-input-section">
+    <h3>Ingresa tu nombre</h3>
+    <p class="instruction">Opcional - Si no ingresas un nombre, serás "Player 1"</p>
+    
+    <div class="input-container">
+      <input 
+        type="text" 
+        [(ngModel)]="playerName" 
+        placeholder="Tu nombre aquí..."
+        maxlength="20"
+        class="name-input"
+        (keyup.enter)="startGame()">
+    </div>
+  </div>
+
+  <div class="buttons-section">
+    <button class="start-button" (click)="startGame()">
+      🎮 COMENZAR JUEGO
+    </button>
+    <button class="back-button" (click)="goBack()">
+      ← VOLVER AL MENÚ
+    </button>
+  </div>
+</div>

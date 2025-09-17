@@ -1,0 +1,125 @@
+<div class="instructions-container">
+  <div class="instructions-header">
+    <h2>INSTRUCCIONES DEL JUEGO</h2>
+    <div class="pacman-demo">
+      <div class="demo-pacman"></div>
+      <div class="demo-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="instructions-content">
+    <div class="instruction-section">
+      <h3>🎯 OBJETIVO</h3>
+      <p>Come todos los puntos del laberinto mientras evitas a los fantasmas. ¡Consigue la puntuación más alta posible!</p>
+    </div>
+
+    <div class="instruction-section">
+      <h3>🕹️ CONTROLES</h3>
+      <div class="controls-grid">
+        <div class="control-item">
+          <div class="key-icon">↑</div>
+          <span>Mover hacia arriba</span>
+        </div>
+        <div class="control-item">
+          <div class="key-icon">↓</div>
+          <span>Mover hacia abajo</span>
+        </div>
+        <div class="control-item">
+          <div class="key-icon">←</div>
+          <span>Mover hacia la izquierda</span>
+        </div>
+        <div class="control-item">
+          <div class="key-icon">→</div>
+          <span>Mover hacia la derecha</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="instruction-section">
+      <h3>👻 FANTASMAS</h3>
+      <div class="ghosts-info">
+        <div class="ghost-item">
+          <div class="ghost-icon blinky"></div>
+          <div class="ghost-details">
+            <strong>Blinky (Rojo)</strong>
+            <p>El más agresivo, te persigue directamente</p>
+          </div>
+        </div>
+        <div class="ghost-item">
+          <div class="ghost-icon pinky"></div>
+          <div class="ghost-details">
+            <strong>Pinky (Rosa)</strong>
+            <p>Trata de emboscarte por delante</p>
+          </div>
+        </div>
+        <div class="ghost-item">
+          <div class="ghost-icon inky"></div>
+          <div class="ghost-details">
+            <strong>Inky (Azul)</strong>
+            <p>Impredecible, cambia de estrategia</p>
+          </div>
+        </div>
+        <div class="ghost-item">
+          <div class="ghost-icon clyde"></div>
+          <div class="ghost-details">
+            <strong>Clyde (Naranja)</strong>
+            <p>Tímido, huye cuando te acercas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="instruction-section">
+      <h3>⚡ POWER PILLS</h3>
+      <p>Come las píldoras de poder (puntos grandes) para volver vulnerables a los fantasmas temporalmente. ¡Cómelos para obtener puntos extra!</p>
+      <div class="power-pill-demo">
+        <div class="power-pill"></div>
+        <span class="arrow">→</span>
+        <div class="vulnerable-ghost"></div>
+      </div>
+    </div>
+
+    <div class="instruction-section">
+      <h3>🏆 PUNTUACIÓN</h3>
+      <div class="scoring-table">
+        <div class="score-item">
+          <span class="item">Punto pequeño</span>
+          <span class="points">10 puntos</span>
+        </div>
+        <div class="score-item">
+          <span class="item">Power Pill</span>
+          <span class="points">50 puntos</span>
+        </div>
+        <div class="score-item">
+          <span class="item">Fantasma vulnerable</span>
+          <span class="points">200-800 puntos</span>
+        </div>
+        <div class="score-item">
+          <span class="item">Fruta bonus</span>
+          <span class="points">100-1000 puntos</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="instruction-section">
+      <h3>💡 CONSEJOS</h3>
+      <ul class="tips-list">
+        <li>Planifica tu ruta para maximizar los puntos</li>
+        <li>Usa las esquinas para escapar de los fantasmas</li>
+        <li>Guarda las Power Pills para momentos críticos</li>
+        <li>Los fantasmas son más lentos en los túneles</li>
+        <li>Cada fantasma tiene un patrón de comportamiento único</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="instructions-footer">
+    <button class="back-button" (click)="goBack()">
+      ← VOLVER AL MENÚ
+    </button>
+  </div>
+</div>

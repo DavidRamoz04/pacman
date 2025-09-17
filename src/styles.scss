@@ -1,0 +1,459 @@
+/* ===== PACMAN GAME - GLOBAL STYLES ===== */
+
+/* === COLOR VARIABLES === */
+:root {
+  /* Primary Colors */
+  --pacman-yellow: #ffff00;
+  --pacman-black: #000000;
+  --pacman-white: #ffffff;
+  
+  /* Background Gradients */
+  --bg-primary: linear-gradient(135deg, #000428 0%, #004e92 100%);
+  --bg-secondary: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  --bg-tertiary: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  
+  /* Game Colors */
+  --game-bg: #000000;
+  --game-border: #0000ff;
+  --score-color: #00ff00;
+  --player-color: #00ffff;
+  --lives-color: #ffff00;
+  
+  /* Ghost Colors */
+  --ghost-blinky: #ff0000;
+  --ghost-pinky: #ffb8ff;
+  --ghost-inky: #00ffff;
+  --ghost-clyde: #ffb852;
+  --ghost-vulnerable: #0000ff;
+  --ghost-flash: #ffffff;
+  
+  /* Button Colors */
+  --btn-primary: #ffff00;
+  --btn-success: #00ff00;
+  --btn-danger: #ff4444;
+  --btn-info: #6b6bff;
+  --btn-warning: #ff6b6b;
+  
+  /* Text Colors */
+  --text-primary: #ffff00;
+  --text-secondary: #ffffff;
+  --text-muted: #cccccc;
+  --text-success: #00ff00;
+  --text-info: #00ffff;
+  --text-gold: #ffd700;
+  
+  /* Effects */
+  --shadow-glow-yellow: 0 0 10px var(--pacman-yellow), 0 0 20px var(--pacman-yellow);
+  --shadow-glow-green: 0 0 10px var(--score-color), 0 0 20px var(--score-color);
+  --shadow-glow-cyan: 0 0 5px var(--player-color);
+  
+  /* Transparency Overlays */
+  --overlay-dark: rgba(0, 0, 0, 0.6);
+  --overlay-light: rgba(255, 255, 255, 0.1);
+  --overlay-yellow: rgba(255, 255, 0, 0.1);
+  --overlay-green: rgba(0, 255, 0, 0.1);
+}
+
+/* === TYPOGRAPHY === */
+.pacman-font {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+.text-glow {
+  text-shadow: var(--shadow-glow-yellow);
+}
+
+.text-glow-green {
+  text-shadow: var(--shadow-glow-green);
+}
+
+.text-glow-cyan {
+  text-shadow: var(--shadow-glow-cyan);
+}
+
+/* === MIXINS AS UTILITY CLASSES === */
+
+/* Button Styles */
+.btn-pacman {
+  background: transparent;
+  border: 3px solid var(--btn-primary);
+  color: var(--btn-primary);
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-pacman:hover {
+  background: var(--btn-primary);
+  color: var(--pacman-black);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--btn-primary);
+}
+
+.btn-pacman::before {
+  content: '';
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-pacman:hover::before {
+  left: 100%;
+}
+
+.btn-success {
+  border-color: var(--btn-success);
+  color: var(--btn-success);
+}
+
+.btn-success:hover {
+  background: var(--btn-success);
+  color: var(--pacman-black);
+  box-shadow: 0 0 20px var(--btn-success);
+}
+
+.btn-danger {
+  border-color: var(--btn-danger);
+  color: var(--btn-danger);
+}
+
+.btn-danger:hover {
+  background: var(--btn-danger);
+  color: var(--pacman-white);
+  box-shadow: 0 0 20px var(--btn-danger);
+}
+
+/* Container Styles */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: var(--text-primary);
+  font-family: 'Courier New', monospace;
+  padding: 20px;
+}
+
+.bg-primary {
+  background: var(--bg-primary);
+}
+
+.bg-secondary {
+  background: var(--bg-secondary);
+}
+
+.bg-tertiary {
+  background: var(--bg-tertiary);
+}
+
+.bg-game {
+  background-color: var(--game-bg);
+}
+
+/* Card/Panel Styles */
+.game-panel {
+  background: var(--overlay-dark);
+  border: 2px solid rgba(255, 255, 0, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.game-panel:hover {
+  border-color: var(--pacman-yellow);
+  box-shadow: 0 0 15px rgba(255, 255, 0, 0.3);
+}
+
+.game-panel-highlight {
+  border-color: var(--pacman-yellow);
+  box-shadow: 0 0 30px rgba(255, 255, 0, 0.3);
+}
+
+/* Input Styles */
+.game-input {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  font-family: 'Courier New', monospace;
+  background: var(--overlay-light);
+  border: 2px solid var(--pacman-yellow);
+  border-radius: 8px;
+  color: var(--pacman-yellow);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.game-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.game-input::placeholder {
+  color: rgba(255, 255, 0, 0.6);
+}
+
+/* === ANIMATIONS === */
+@keyframes glow {
+  from {
+    text-shadow: 
+      0 0 10px var(--pacman-yellow),
+      0 0 20px var(--pacman-yellow),
+      0 0 30px var(--pacman-yellow);
+  }
+  to {
+    text-shadow: 
+      0 0 20px var(--pacman-yellow),
+      0 0 30px var(--pacman-yellow),
+      0 0 40px var(--pacman-yellow);
+  }
+}
+
+@keyframes chomp {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes mouth {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.2); }
+}
+
+@keyframes fadeOut {
+  0%, 70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes flash {
+  0%, 50% { background: var(--ghost-vulnerable); }
+  51%, 100% { background: var(--ghost-flash); }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 0.7; }
+  51%, 100% { opacity: 0.3; }
+}
+
+@keyframes celebration {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+@keyframes goldGlow {
+  from {
+    box-shadow: 0 0 5px var(--text-gold);
+  }
+  to {
+    box-shadow: 0 0 15px var(--text-gold);
+  }
+}
+
+/* Animation Utility Classes */
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.animate-chomp {
+  animation: chomp 0.8s infinite;
+}
+
+.animate-float {
+  animation: float 2s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 1s infinite;
+}
+
+.animate-blink {
+  animation: blink 2s infinite;
+}
+
+.animate-celebration {
+  animation: celebration 1s ease-in-out infinite alternate;
+}
+
+/* === GHOST UTILITIES === */
+.ghost-base {
+  border-radius: 50% 50% 0 0;
+  position: relative;
+}
+
+.ghost-base::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: inherit;
+  clip-path: polygon(0 0, 25% 100%, 50% 0, 75% 100%, 100% 0, 100% 100%, 0 100%);
+}
+
+.ghost-blinky { background: var(--ghost-blinky); }
+.ghost-pinky { background: var(--ghost-pinky); }
+.ghost-inky { background: var(--ghost-inky); }
+.ghost-clyde { background: var(--ghost-clyde); }
+.ghost-vulnerable { background: var(--ghost-vulnerable); }
+
+/* === PACMAN UTILITIES === */
+.pacman-base {
+  background: var(--pacman-yellow);
+  border-radius: 50%;
+  position: relative;
+}
+
+.pacman-base::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid var(--pacman-black);
+  transform-origin: 0 50%;
+}
+
+/* === DOT UTILITIES === */
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--pacman-yellow);
+  border-radius: 50%;
+}
+
+.power-pill {
+  width: 20px;
+  height: 20px;
+  background: var(--pacman-yellow);
+  border-radius: 50%;
+}
+
+/* === RESPONSIVE BREAKPOINTS === */
+:root {
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+}
+
+/* === RESPONSIVE UTILITIES === */
+
+/* Mobile First - Extra Small devices (phones, 320px and up) */
+.game-container {
+  padding: 8px;
+}
+
+.btn-pacman {
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  min-width: 180px;
+  letter-spacing: 1px;
+}
+
+.game-panel {
+  padding: 12px;
+  margin: 8px;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .game-container {
+    padding: 12px;
+  }
+  
+  .btn-pacman {
+    font-size: 1rem;
+    padding: 12px 25px;
+    min-width: 200px;
+  }
+  
+  .game-panel {
+    padding: 15px;
+    margin: 10px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .game-container {
+    padding: 16px;
+  }
+  
+  .btn-pacman {
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    min-width: 250px;
+  }
+  
+  .game-panel {
+    padding: 20px;
+    margin: 15px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .game-container {
+    padding: 20px;
+  }
+  
+  .btn-pacman {
+    font-size: 1.2rem;
+    padding: 15px 35px;
+    min-width: 280px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .game-container {
+    padding: 24px;
+  }
+  
+  .btn-pacman {
+    font-size: 1.3rem;
+    padding: 18px 40px;
+    min-width: 300px;
+  }
+}
+
+/* === RESET STYLES === */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', monospace;
+  background: var(--pacman-black);
+  color: var(--text-primary);
+}

@@ -1,0 +1,60 @@
+<div class="game-container">
+  <div class="game-header">
+    <div class="player-info">Player: {{ playerName }}</div>
+    <div class="score">Score: {{ score }}</div>
+    <div class="lives">Lives: {{ lives }}</div>
+    <div class="level">Level: {{ level }}</div>
+    <button (click)="restartGame()" class="restart-btn">Restart</button>
+    <button (click)="goBackToMenu()" class="restart-btn">Menu</button>
+  </div>
+  <div #gameContainer id="game-container" class="phaser-game"></div>
+  
+  <!-- Mobile Touch Controls -->
+  <div class="mobile-controls" *ngIf="isMobile">
+    <div class="d-pad">
+      <button class="control-btn up-btn" 
+              (touchstart)="onTouchStart('up')" 
+              (touchend)="onTouchEnd()"
+              (mousedown)="onTouchStart('up')"
+              (mouseup)="onTouchEnd()">
+        <span class="arrow">↑</span>
+      </button>
+      <div class="middle-row">
+        <button class="control-btn left-btn" 
+                (touchstart)="onTouchStart('left')" 
+                (touchend)="onTouchEnd()"
+                (mousedown)="onTouchStart('left')"
+                (mouseup)="onTouchEnd()">
+          <span class="arrow">←</span>
+        </button>
+        <div class="center-space"></div>
+        <button class="control-btn right-btn" 
+                (touchstart)="onTouchStart('right')" 
+                (touchend)="onTouchEnd()"
+                (mousedown)="onTouchStart('right')"
+                (mouseup)="onTouchEnd()">
+          <span class="arrow">→</span>
+        </button>
+      </div>
+      <button class="control-btn down-btn" 
+              (touchstart)="onTouchStart('down')" 
+              (touchend)="onTouchEnd()"
+              (mousedown)="onTouchStart('down')"
+              (mouseup)="onTouchEnd()">
+        <span class="arrow">↓</span>
+      </button>
+    </div>
+  </div>
+  
+  <div class="game-footer" *ngIf="isGameOver">
+    <h2>¡Juego Terminado!</h2>
+    <p>Puntuación Final: {{ score }}</p>
+    <div *ngIf="showNewHighScore" class="new-high-score">
+      <h3>¡Nueva Puntuación Alta!</h3>
+    </div>
+    <div class="game-over-buttons">
+      <button (click)="restartGame()" class="restart-btn">Jugar de Nuevo</button>
+      <button (click)="goBackToMenu()" class="menu-btn">Volver al Menú</button>
+    </div>
+  </div>
+</div>
